@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PySR / Julia
+.julia/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary
+tmp/
+temp/
+# Data output (large, regenerable)
+*.json
+*.csv
+tal_4_2_output.txt
+tal_4_2_step04_summary*.txt
+
+# Plots output
+tal_4_2_step04_plots*/
+tal_4_2_step04_plots_v2*/
+
+# Backup files
+*_v1.py
+*_v2.py
+*_buggy.txt
+
+# Spurious files
+cd
+git
+main
+main)
+tasklist
+
+# Output folder
+outputs/
+TEA/
+
+# Altri step (non ancora pronti)
+tal_4_2_step02_tests.py
+tal_4_2_step03_*.py
+tal_4_2_step06_joss_make_files.py
+tal_4_2_step03_*.json
+
+# Analisi spurie (root)
+analyze_by_domain.py
+analyze_full.py
+analyze_stats.py
+check_fails.py
+confronta.py
+
+# JOSS paper files (non parte di questo report)
+paper.md
+paper.bib
+pyproject.toml
+environment.yml
+run_step01_repro.ps1
+# Backup version
+tal_4_2.versione_*.py

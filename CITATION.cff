@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "TAL - Theory-Adaptive Learning: Compositional Symbolic Regression with Adaptive Grammar Selection"
+version: 4.2.0
+date-released: "2026-10-01"
+license: MIT
+type: software
+authors:
+  - family-names: "Fenech-Casoni"
+    given-names: ""
+abstract: >
+  TAL is a compositional symbolic regression framework that adaptively
+  selects between two grammars (base: 8 operators; extended: 13 operators)
+  and uses a multi-start parametric fitter with parametric memory to
+  recover closed-form expressions from data. The framework is evaluated
+  on 17 benchmark functions spanning four domains: Feynman equations,
+  ordinary differential equations, dynamical systems, and empirical
+  functions.
+keywords:
+  - symbolic regression
+  - equation discovery
+  - genetic programming
+  - grammar-based search
+  - scientific machine learning
+repository-code: "https://github.com/fenech-casoni/tal"

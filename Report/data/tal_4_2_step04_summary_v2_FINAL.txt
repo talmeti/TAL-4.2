@@ -1,0 +1,24 @@
+============================================================
+ TAL 4.2 — Step 04 — Sommario benchmark (v2.2 FIXED)
+============================================================
+  Raw runs      : 153
+  OK runs       : 153
+
+--- Per metodo ---
+  poly     n=51    mse_mean=1.390e-02 mse_median=4.320e-04 solved=60.78% perfect=52.94%
+  pysr     n=51    mse_mean=4.902e+16 mse_median=2.613e-12 solved=80.39% perfect=80.39%
+  tal      n=51    mse_mean=1.506e-03 mse_median=5.230e-22 solved=96.08% perfect=88.24%
+
+--- TAL per dominio ---
+  Dinamici     n=9     mse_mean=2.403e-03 mse_median=4.190e-07 solved=88.89% perfect=77.78%
+  Feynman      n=24    mse_mean=8.430e-08 mse_median=3.639e-25 solved=100.00% perfect=100.00%
+  ODE          n=9     mse_mean=2.430e-07 mse_median=3.400e-29 solved=100.00% perfect=100.00%
+  Reali        n=9     mse_mean=6.132e-03 mse_median=9.148e-04 solved=88.89% perfect=55.56%
+
+--- TAL per extrapolazione ---
+  none         n=51    mse_mean=1.506e-03 mse_median=5.230e-22 solved=96.08%
+
+--- TAL per rumore ---
+  noise=0.0    n=51    mse_mean=1.506e-03 mse_median=5.230e-22 solved=96.08%
+
+============================================================

@@ -1,0 +1,56 @@
+====================================================================================================
+ TAL 4.2 - Analisi statistica completa
+====================================================================================================
+
+--- 1. Statistiche descrittive (globale) ---
+Metodo   n     mean           median         std            CI95_low       CI95_high     
+----------------------------------------------------------------------------------------------------
+poly     51    1.390e-02      4.320e-04      1.958e-02      8.478e-03      1.933e-02     
+pysr     41    3.792e-05      1.618e-14      1.479e-04      -7.915e-06     8.375e-05     
+tal      51    1.506e-03      5.230e-22      5.841e-03      -1.128e-04     3.125e-03     
+
+--- 2. Mann-Whitney U test (globale) ---
+Confronto            U            p-value        Signif.  Cohen d     
+--------------------------------------------------------------------------------
+tal vs poly          604.0        3.1894e-06     ***      0.850       
+tal vs pysr          932.5        3.7681e-01     ns       -0.334      
+pysr vs poly         415.0        7.4609e-07     ***      0.941       
+
+--- 3. Mann-Whitney U test per dominio (TAL vs PySR) ---
+Dominio      TAL n  PySR n  U          p-value        Signif.  Cohen d     
+----------------------------------------------------------------------------------------------------
+Feynman      24     19      120.0      8.5537e-03     **       0.204       
+ODE          9      9       30.0       3.7599e-01     ns       -0.573      
+Dinamici     9      5       18.0       6.0639e-01     ns       -0.434      
+Reali        9      8       56.0       5.9235e-02     ns       -0.693      
+
+--- 4. Mann-Whitney U test per dominio (TAL vs poly) ---
+Dominio      TAL n  poly n  U          p-value        Signif.  Cohen d     
+----------------------------------------------------------------------------------------------------
+Feynman      24     24      116.0      4.0523e-04     ***      1.122       
+ODE          9      9       6.0        2.6255e-03     **       0.915       
+Dinamici     9      9       12.0       1.3419e-02     *        0.754       
+Reali        9      9       31.0       4.2678e-01     ns       0.784       
+
+--- 5. Wilcoxon signed-rank test (TAL vs PySR, run appaiati) ---
+
+Run appaiati: n=41
+Wilcoxon W=393.0, p=6.2701e-01
+Nessuna differenza significativa tra TAL e PySR.
+
+--- 6. Sommario interpretativo ---
+
+Confronti significativi (p < 0.05):
+  - tal vs poly: p=3.1894e-06
+  - pysr vs poly: p=7.4609e-07
+
+Confronti non significativi (p >= 0.05):
+  - tal vs pysr: p=3.7681e-01
+
+Per dominio (TAL vs PySR):
+  - Feynman: p=8.5537e-03 (significativo)
+  - ODE: p=3.7599e-01 (non significativo)
+  - Dinamici: p=6.0639e-01 (non significativo)
+  - Reali: p=5.9235e-02 (non significativo)
+
+====================================================================================================
