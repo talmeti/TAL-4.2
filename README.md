@@ -1,92 +1,105 @@
-# TAL - Theory-Adaptive Learning
+# TAL 4.2 — Theory-Adaptive Learning
 
-**TAL 4.2.0** - Compositional Symbolic Regression with Adaptive Grammar Selection.
+**Symbolic regression with adaptive grammars.**
 
-TAL e' un framework di **regressione simbolica** che scopre espressioni
-in forma chiusa a partire da dati, combinando:
+**Autori**: Ruggero Fenech, Giorgio Casoni
 
-- **due grammatiche** (base: 8 operatori; estesa: 13 operatori),
-- **selezione adattiva** della grammatica migliore per ogni funzione,
-- **fitter multi-start** basato su lmfit,
-- **memoria parametrica** che riusa i parametri tra alberi con la stessa firma,
-- **criterio di accettazione deterministico** basato sul miglioramento dell'MSE.
+---
 
-## Risultati
+## Panoramica
 
-Su 17 funzioni benchmark distribuite in 4 domini:
+TAL 4.2 (Theory-Adaptive Learning) è un metodo di **symbolic regression**
+che combina grammatiche adattive, memoria parametrica e un criterio di
+accettazione deterministico per guidare la ricerca.
 
-| Dominio   | Funzioni | Risolte | Perfette | Base | Estesa |
-|-----------|---------:|--------:|---------:|-----:|-------:|
-| Feynman   |        8 |       8 |        8 |    4 |      4 |
-| ODE       |        3 |       3 |        3 |    2 |      1 |
-| Dinamici  |        3 |       2 |        2 |    2 |      1 |
-| Reali     |        3 |       3 |        2 |    2 |      1 |
-| **Totale**|   **17** |  **16** |   **15** |**10**|  **7** |
+Il metodo è confrontato con:
+- **poly**: baseline polinomiale (grado 5)
+- **PySR**: stato dell'arte nella symbolic regression
 
-- Risolta: MSE di test < 0.01
-- Perfetta: MSE di test < 0.001
+Su 17 problemi in 4 domini (Feynman, ODE, Dinamici, Reali), per un
+totale di 153 run.
 
-## Installazione
+## Risultati principali
 
-### Con conda (consigliato)
+| Metodo | n | MSE median | Solved rate |
+|--------|---|------------|-------------|
+| poly | 51 | 4.32e-04 | 60.78% |
+| PySR | 51 (44 ok) | 1.71e-15 | 86.27% |
+| **TAL** | **51** | **5.23e-22** | **96.08%** |
 
-    conda env create -f environment.yml
-    conda activate tal
+- TAL è **significativamente migliore di poly** su tutti i domini (p < 1e-5).
+- TAL è **significativamente migliore di PySR su Feynman** (p = 0.012).
+- TAL è **statisticamente equivalente a PySR** su ODE, Dinamici e Reali.
+- TAL è **più stabile** (0 fallimenti su 51 run vs 7 di PySR).
+- TAL è **~4x più lento** di PySR (~60 s vs ~14 s per run).
 
-### Con pip
+## Report completo
 
-    pip install -r requirements.txt
+Il report completo è disponibile in tre formati:
 
-## Uso
+- **[Report/README.md](Report/README.md)** — Report in formato Markdown (sorgente)
+- **[Report/Report.pdf](Report/Report.pdf)** — Report in formato PDF (leggibile, stampabile)
+- **[Report/report.html](Report/report.html)** — Report in formato HTML (interattivo)
 
-    python tal_4_2_step01_cleanup.py
+Il report include:
+- Abstract e introduzione
+- Stato dell'arte (PySR, AI Feynman)
+- Descrizione del metodo TAL 4.2
+- Setup sperimentale
+- Risultati (globali e per dominio)
+- Discussione e conclusioni
+- Analisi statistica completa (Mann-Whitney U, Wilcoxon, Cohen's d)
 
-Output:
+## Codice
 
-- tal_4_2_output.txt - log completo dell'esecuzione
-- tal_4_2.json - risultati in formato JSON
-- tal_4_2_step01.log - log dettagliato (DEBUG)
+- **[tal_4_2_step01_cleanup.py](tal_4_2_step01_cleanup.py)** — Modulo principale (grammatiche, fitter, generator)
+- **[tal_4_2_step04_benchmark.py](tal_4_2_step04_benchmark.py)** — Benchmark (TAL vs poly vs PySR)
 
-## Test
+## Riproducibilità
 
-    pytest tal_4_2_step02_tests.py -v
+### Requisiti
 
-41 test che coprono grammatiche, utility, memoria, fitter, generator,
-domini e due casi end-to-end.
+```bash
+pip install -r requirements.txt
+```
 
-## Struttura del progetto
+### Eseguire il benchmark
 
-    .
-    tal_4_2_step01_cleanup.py         # pipeline principale
-    tal_4_2_step02_tests.py           # suite pytest
-    tal_4_2_step03_reproducibility.py # report d'ambiente
-    requirements.txt
-    environment.yml
-    pyproject.toml
-    CITATION.cff
-    LICENSE
-    README.md
+```bash
+python tal_4_2_step04_benchmark.py --quick --with-pysr --n-jobs 8
+```
 
-## Roadmap
+### Generare le figure del report
 
-- [x] Step 01 - cleanup + riproducibilita verificata
-- [x] Step 02 - 41 test pytest
-- [x] Step 03 - packaging, licenza, citazione
-- [ ] Step 04 - benchmark multi-seed, rumore, extrapolazione, baseline
-- [ ] Step 05 - ablation (memoria, grammatica estesa, detector)
-- [ ] Step 06 - paper / release pubblica
+```bash
+cd Report/scripts
+python make_paper_figures.py
+python analyze_by_domain.py
+python full_statistical_analysis.py
+```
+
+### Convertire il report in HTML/PDF
+
+```bash
+cd Report
+pandoc README.md 01_abstract.md 02_introduction.md 03_related_work.md 04_method.md 05_experimental_setup.md 06_results.md 07_discussion.md 08_conclusion.md 09_references.md 10_statistical_tests.md -o report.html --embed-resources --standalone
+```
 
 ## Citazione
 
-    @software{fenech_casoni_tal_2026,
-      author       = {Fenech-Casoni},
-      title        = {{TAL - Theory-Adaptive Learning}},
-      version      = {4.2.0},
-      year         = {2026},
-      license      = {MIT},
-      url          = {https://github.com/fenech-casoni/tal}
-    }
+Se usi questo lavoro, cita:
+
+```bibtex
+@techreport{fenech2026tal,
+  title = {{TAL 4.2: Theory-Adaptive Learning for Symbolic Regression}},
+  author = {Fenech, Ruggero and Casoni, Giorgio},
+  year = {2026},
+  month = {10},
+  type = {Technical Report},
+  url = {https://github.com/talmeti/TAL-4.2}
+}
+```
 
 ## Licenza
 
-MIT - vedi LICENSE.
+Vedi il file [LICENSE](LICENSE) per i dettagli.
