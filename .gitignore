@@ -71,3 +71,13 @@ environment.yml
 run_step01_repro.ps1
 # Backup version
 tal_4_2.versione_*.py
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
